@@ -1,0 +1,41 @@
+
+<div class="main">
+
+  <nz-table
+            #basicTable
+            nzBordered 
+            [nzData]="users"
+            [(nzPageIndex)] = "currentCondition.PageIndex"
+            [(nzPageSize)]  = "currentCondition.PageSize"
+            [nzTotal]="totalCount"
+            [nzFrontPagination]="false"
+            (nzPageIndexChange)="handlePageIndexChange()"
+  >
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>FullName</th>
+        <th>Age</th>
+        <th>
+          <span>Actions</span>
+          <span> - </span>
+          <a (click)="handleAddNewItem($event)" >Thêm mới</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of basicTable.data">
+        <td>{{user.id}}</td>
+        <td>{{user.fullName}}</td>
+        <td>{{user.age}}</td>
+        <td>
+          <a (click)="handleEditItem($event, user)" >Sửa</a>
+          <span> - </span>
+          <a (click)="handleDeleteItem(user)" >Xóa</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<router-outlet></router-outlet>

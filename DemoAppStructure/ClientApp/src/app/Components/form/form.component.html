@@ -1,0 +1,15 @@
+<div>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Full Name</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input name="fullName" value="{{user.fullName}}" (input)="handleInputChange($event)" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Age</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input name="age" type="number" value="{{user.age}}" (input)="handleInputChange($event)" />
+    </nz-form-control>
+  </nz-form-item>
+</div>
