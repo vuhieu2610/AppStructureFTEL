@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppOutSideAPI.Data.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IGenericRepository<Users> UserRepository { get; }
     }

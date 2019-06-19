@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace EntityData.Common
 {
     public class Db: IDisposable
     {
-        private string _connectionString = "Server=W0109145873\\SQLEXPRESS;Database=DemoStructureDB;Trusted_Connection=True;";
+        private string _connectionString = ConfigUtil.GetConfigValue("ConnectionString");
         private SqlConnection _connection;
         private SqlCommand _command;
         private SqlDataReader _reader;
@@ -306,8 +307,11 @@ namespace EntityData.Common
 
         public void Dispose()
         {
-            _db.Dispose();
-            _db = null;
+            if (_db != null)
+            {
+                _db.Dispose();
+                _db = null;
+            }
         }
     }
 }
