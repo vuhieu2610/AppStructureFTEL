@@ -10,8 +10,9 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
-        }
+          "style": 
+            "sass"
+      }
       },
       "architect": {
         "build": {
@@ -32,6 +33,9 @@
               }
             ],
             "styles": [
+            "../ClientApp/node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+            "../ClientApp/node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+            
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.scss"
             ],

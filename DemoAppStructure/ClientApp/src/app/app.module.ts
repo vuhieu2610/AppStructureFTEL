@@ -10,7 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormComponent } from './Components/form/form.component';
-
+import { EntityModule } from './Entites/entity.module';
+import {MDBBootstrapModule} from 'angular-bootstrap-md'
 registerLocaleData(en);
 
 @NgModule({
@@ -24,7 +25,9 @@ registerLocaleData(en);
     HttpClientModule,
     NgZorroAntdModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    EntityModule,
+    MDBBootstrapModule.forRoot()
   ],
   entryComponents: [FormComponent],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

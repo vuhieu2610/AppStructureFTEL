@@ -9,7 +9,7 @@ namespace EntityData.Common
 {
     public class Db: IDisposable
     {
-        private string _connectionString = "Server=W0109145873\\SQLEXPRESS;Database=DemoStructureDB;Trusted_Connection=True;";
+        private string _connectionString = "Server=DESKTOP-MFFF70R\\SQLEXPRESS;Database=DemoStructureDB;Trusted_Connection=True;";
         private SqlConnection _connection;
         private SqlCommand _command;
         private SqlDataReader _reader;

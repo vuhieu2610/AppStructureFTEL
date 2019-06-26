@@ -1,41 +1,78 @@
+<header>
 
-<div class="main">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark aqua-gradient scrolling-navbar">
+    <a class="navbar-brand" href="#"><strong>Movie theater</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="na vbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" class="btn peach-gradient">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" class="btn aqua-gradient">Features</a>
+        </li>
+        <li class="nav-item">
+          <div *ngFor="">
+          <a class="nav-link" class="btn aqua-gradient" routerLink="${link}">Theater</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" class="btn peach-gradient" routerLink="user">User</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link"><i class="fab fa-facebook-f"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><i class="fab fa-twitter"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><i class="fab fa-instagram"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-  <nz-table
-            #basicTable
-            nzBordered 
-            [nzData]="users"
-            [(nzPageIndex)] = "currentCondition.PageIndex"
-            [(nzPageSize)]  = "currentCondition.PageSize"
-            [nzTotal]="totalCount"
-            [nzFrontPagination]="false"
-            (nzPageIndexChange)="handlePageIndexChange()"
-  >
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>FullName</th>
-        <th>Age</th>
-        <th>
-          <span>Actions</span>
-          <span> - </span>
-          <a (click)="handleAddNewItem($event)" >Thêm mới</a>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of basicTable.data">
-        <td>{{user.id}}</td>
-        <td>{{user.fullName}}</td>
-        <td>{{user.age}}</td>
-        <td>
-          <a (click)="handleEditItem($event, user)" >Sửa</a>
-          <span> - </span>
-          <a (click)="handleDeleteItem(user)" >Xóa</a>
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
-</div>
+</header>
+
+<body class="float-top">
+  <div class="main">
+
+    <nz-table #basicTable nzBordered [nzData]="users" [(nzPageIndex)]="currentCondition.PageIndex"
+      [(nzPageSize)]="currentCondition.PageSize" [nzTotal]="totalCount" [nzFrontPagination]="false"
+      (nzPageIndexChange)="handlePageIndexChange()">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>FullName</th>
+          <th>Age</th>
+          <th>
+            <span>Actions</span>
+            <span> - </span>
+            <a (click)="handleAddNewItem($event)">Thêm mới</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of basicTable.data">
+          <td>{{user.id}}</td>
+          <td>{{user.fullName}}</td>
+          <td>{{user.age}}</td>
+          <td>
+            <a (click)="handleEditItem($event, user)">Sửa</a>
+            <span> - </span>
+            <a (click)="handleDeleteItem(user)">Xóa</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+  </div>
+</body>
+
+<footer></footer>
 
 <router-outlet></router-outlet>
