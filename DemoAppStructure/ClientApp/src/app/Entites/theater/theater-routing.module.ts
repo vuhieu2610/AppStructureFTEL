@@ -4,8 +4,20 @@ import { UserComponent } from '../user/user.component';
 import { ThemMoiTheaterComponent } from './them-moi-theater/them-moi-theater.component';
 
 const routes: Routes = [
-  { path:"themMoi", component: ThemMoiTheaterComponent},
-  {path: "user", component: UserComponent}
+  { path:'',
+    data:{
+      title:'Theater'
+    },
+    children:[
+
+      {
+        path: 'themMoi',
+        component: ThemMoiTheaterComponent,
+      }
+      
+    ]
+  },
+  
 ];
 
 @NgModule({

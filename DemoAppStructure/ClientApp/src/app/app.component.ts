@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Users } from './Classes/Users';
 import { BaseCondition } from './Classes/BaseCondition';
 import { UsersService } from './Services/users.service';
 import { ReturnResult } from './Classes/ReturnResult';
 import { NzModalService } from 'ng-zorro-antd';
 import { FormComponent } from './Components/form/form.component';
+import { Router, NavigationEnd } from '@angular/router';
+import { navItems } from './_nav';
+import { DOCUMENT } from '@angular/common';
 
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'body',
+  template:'<router-outlet></router-outlet>',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
@@ -18,13 +21,26 @@ export class AppComponent implements OnInit {
   users: Users[] = [];
   totalCount: number = 0;
   currentCondition: BaseCondition;
-
+  public navItems = navItems;
+  public sidebarMinimized = true;
+  private changes: MutationObserver;
+  public element: HTMLElement;
 
   constructor(
     private usersService: UsersService,
-    private modalService: NzModalService
+    private modalService: NzModalService,
+    private router: Router,
+    @Inject(DOCUMENT) _document?: any
   ) {
 
+    this.changes = new MutationObserver((mutations) => {
+      this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');
+    });
+    this.element = _document.body;
+    this.changes.observe(<Element>this.element, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
   }
 
   ngOnInit() {
@@ -32,6 +48,12 @@ export class AppComponent implements OnInit {
     this.currentCondition.PageIndex = 1;
     this.currentCondition.PageSize = 10;
     this.getPaging(this.currentCondition);
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 
   getPaging(condition: BaseCondition) {

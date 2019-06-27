@@ -12,18 +12,49 @@ import en from '@angular/common/locales/en';
 import { FormComponent } from './Components/form/form.component';
 import { EntityModule } from './Entites/entity.module';
 import {MDBBootstrapModule} from 'angular-bootstrap-md'
-registerLocaleData(en);
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import {
+  AppAsideModule,
+  AppBreadcrumbModule,
+  AppHeaderModule,
+  AppFooterModule,
+  AppSidebarModule,
+} from '@coreui/angular';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { LayoutComponent } from './Layout/layout/layout.component';
+
+registerLocaleData(en);
+const APP_CONTAINERS = [
+  LayoutComponent
+];
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent
+    FormComponent,
+    LayoutComponent,
+    ...APP_CONTAINERS
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgZorroAntdModule,
+    AppAsideModule,
+    AppBreadcrumbModule.forRoot(),
+    AppFooterModule,
+    AppHeaderModule,
+    AppSidebarModule,
+    PerfectScrollbarModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+  
     FormsModule,
     BrowserAnimationsModule,
     EntityModule,
