@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './Entites/user/user.component';
 import { TheaterComponent } from './Entites/theater/theater.component';
-import { AppComponent } from './app.component';
+
 import { LayoutComponent } from './Layout/layout/layout.component';
+import { MovieComponent } from './Entites/movie/movie.component';
 
 const routes: Routes = [
 
@@ -35,6 +36,17 @@ const routes: Routes = [
           title: 'theater'
         }
       },
+      {
+        path: 'movie',
+         component: MovieComponent,
+         data:{
+          title: 'movie'
+        }
+      },
+      // {
+      //   path: 'theaterModule',
+      //   loadChildren: () => import('./Entites/theater/theater.module').then(m => m.TheaterModule)
+      // },
     ]
 
   }

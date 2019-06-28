@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@coreui/coreui/scss/coreui";
+body{
+	padding:0;
+	margin:0;
+    background:url(../src/assets/banner2.jpg) no-repeat center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    -moz-background-size: cover;
+	font-family: 'Open Sans', sans-serif !important;
+}

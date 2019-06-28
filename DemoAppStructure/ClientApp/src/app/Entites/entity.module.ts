@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {UserModule} from './user/user.module';
 
 import { TheaterModule } from './theater/theater.module';
+import { MovieModule } from './movie/movie.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { TheaterModule } from './theater/theater.module';
   imports: [
     CommonModule,
     UserModule,
-    TheaterModule
+    TheaterModule,
+    MovieModule
   ]
 })
 export class EntityModule { }
