@@ -5,6 +5,8 @@ import { TheaterComponent } from './Entites/theater/theater.component';
 
 import { LayoutComponent } from './Layout/layout/layout.component';
 import { MovieComponent } from './Entites/movie/movie.component';
+import { LoginComponent } from './Entites/user/login/login.component';
+import { RegisterComponent } from './Entites/user/register/register.component';
 
 const routes: Routes = [
 
@@ -13,6 +15,15 @@ const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  
   {
     path: '',
     component: LayoutComponent,
@@ -29,6 +40,7 @@ const routes: Routes = [
         }
 
       },
+  
       {
         path: 'theater',
          component: TheaterComponent,

@@ -24,6 +24,7 @@
     "@coreui/icons": "^0.3.0",
     "angular-bootstrap-md": "^7.5.4",
     "angular-in-memory-web-api": "^0.8.0",
+    "angularx-social-login": "^1.2.7",
     "core-js": "^2.5.4",
     "flag-icon-css": "^3.3.0",
     "font-awesome": "^4.7.0",

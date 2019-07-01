@@ -27,6 +27,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { LayoutComponent } from './Layout/layout/layout.component';
 
+
 registerLocaleData(en);
 const APP_CONTAINERS = [
   LayoutComponent
@@ -34,6 +35,7 @@ const APP_CONTAINERS = [
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
+
 @NgModule({
   declarations: [
     AppComponent,
