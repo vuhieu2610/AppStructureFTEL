@@ -32,6 +32,9 @@ const routes: Routes = [
       },
       {
         path: 'theater', component: TheaterComponent, data: { title: 'theater' }
+      },
+      {
+        path: 'movie', component: MovieComponent, data: { title: 'movie' }
       }
     ]
   },
