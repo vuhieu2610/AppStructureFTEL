@@ -7,13 +7,17 @@ import { LayoutComponent } from './Layout/layout/layout.component';
 import { MovieComponent } from './Entites/movie/movie.component';
 import { LoginComponent } from './Entites/user/login/login.component';
 import { RegisterComponent } from './Entites/user/register/register.component';
+import { AuthGuardService } from './Services/auth-guard.service';
+import { AuthGuardAdminService } from './Services/auth-guard-admin.service';
+import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
+import { AdminComponent } from './Entites/user/admin/admin.component';
+import { AuthGuardUserService } from './Services/auth-guard-user.service';
 
 const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    component: LayoutComponent, canActivate: [AuthGuardService]
   },
   {
     path: 'login',
@@ -23,7 +27,12 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-  
+  {
+    path: 'user/:action', component: UserComponent, canActivate: [AuthGuardUserService]
+  },
+  {
+    path: 'admin/:action', component: AdminComponent, canActivate: [AuthGuardAdminService]
+  },
   {
     path: '',
     component: LayoutComponent,
@@ -35,23 +44,23 @@ const routes: Routes = [
 
         path: 'user',
         component: UserComponent,
-        data:{
+        data: {
           title: 'user'
         }
 
       },
-  
+
       {
         path: 'theater',
-         component: TheaterComponent,
-         data:{
+        component: TheaterComponent,
+        data: {
           title: 'theater'
         }
       },
       {
         path: 'movie',
-         component: MovieComponent,
-         data:{
+        component: MovieComponent,
+        data: {
           title: 'movie'
         }
       },
@@ -61,8 +70,15 @@ const routes: Routes = [
       // },
     ]
 
+  },
+  {
+    path: 'pagenotfound', component: PageNotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
   }
-
 
 ];
 
