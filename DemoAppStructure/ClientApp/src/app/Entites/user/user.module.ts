@@ -9,6 +9,9 @@ import { AuthServiceConfig,
    FacebookLoginProvider,
     LinkedInLoginProvider,  
     SocialLoginModule} from 'angularx-social-login';
+import { FormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from 'src/app/Components/page-not-found/page-not-found.component';
+import { AdminComponent } from './admin/admin.component';
     const config = new AuthServiceConfig([
       {
         id: GoogleLoginProvider.PROVIDER_ID,
@@ -28,11 +31,11 @@ import { AuthServiceConfig,
       return config;
     }
 @NgModule({
-  declarations: [UserComponent, LoginComponent, RegisterComponent],
+  declarations: [UserComponent, LoginComponent, RegisterComponent, AdminComponent],
   imports: [
     CommonModule,
-    SocialLoginModule
-
+    SocialLoginModule,
+    FormsModule
   ],
   providers: [
     UsersService,

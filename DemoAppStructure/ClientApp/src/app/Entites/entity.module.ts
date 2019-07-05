@@ -7,7 +7,7 @@ import { MovieModule } from './movie/movie.module';
 
 @NgModule({
   declarations: [
-
+      
   ],
   imports: [
     CommonModule,
