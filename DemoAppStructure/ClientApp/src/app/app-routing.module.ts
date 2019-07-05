@@ -17,7 +17,23 @@ const routes: Routes = [
 
   {
     path: '',
-    component: LayoutComponent, canActivate: [AuthGuardService]
+    component: LayoutComponent, canActivate: [AuthGuardService],
+    data: { title: 'Home' },
+    children: [
+      {
+        path: 'user/:action', component: UserComponent, canActivate: [AuthGuardUserService],
+        data: {
+          title: 'user'
+        }
+      },
+      {
+        path: 'admin/:action', component: UserComponent, canActivate: [AuthGuardAdminService],
+        data : { title: 'admin' }
+      },
+      {
+        path: 'theater', component: TheaterComponent, data: { title: 'theater' }
+      }
+    ]
   },
   {
     path: 'login',
@@ -27,50 +43,45 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-  {
-    path: 'user/:action', component: UserComponent, canActivate: [AuthGuardUserService]
-  },
-  {
-    path: 'admin/:action', component: AdminComponent, canActivate: [AuthGuardAdminService]
-  },
-  {
-    path: '',
-    component: LayoutComponent,
-    data: {
-      title: 'Home'
-    },
-    children: [
-      {
 
-        path: 'user',
-        component: UserComponent,
-        data: {
-          title: 'user'
-        }
+  // {
+  //   path: '',
+  //   component: LayoutComponent,
+  //   data: {
+  //     title: 'Home'
+  //   },
+  //   children: [
+  //     {
 
-      },
+  //       path: 'user',
+  //       component: UserComponent,
+  //       data: {
+  //         title: 'user'
+  //       }
 
-      {
-        path: 'theater',
-        component: TheaterComponent,
-        data: {
-          title: 'theater'
-        }
-      },
-      {
-        path: 'movie',
-        component: MovieComponent,
-        data: {
-          title: 'movie'
-        }
-      },
-      // {
-      //   path: 'theaterModule',
-      //   loadChildren: () => import('./Entites/theater/theater.module').then(m => m.TheaterModule)
-      // },
-    ]
+  //     },
 
-  },
+  //     {
+  //       path: 'theater',
+  //       component: TheaterComponent,
+  //       data: {
+  //         title: 'theater'
+  //       }
+  //     },
+  //     {
+  //       path: 'movie',
+  //       component: MovieComponent,
+  //       data: {
+  //         title: 'movie'
+  //       }
+  //     },
+  //     // {
+  //     //   path: 'theaterModule',
+  //     //   loadChildren: () => import('./Entites/theater/theater.module').then(m => m.TheaterModule)
+  //     // },
+  //   ]
+
+  // },
   {
     path: 'pagenotfound', component: PageNotFoundComponent
   },

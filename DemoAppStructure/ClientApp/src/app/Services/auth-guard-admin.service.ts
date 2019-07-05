@@ -18,7 +18,7 @@ export class AuthGuardAdminService implements CanActivate {
     var roleCurrent: string = '';
     var roles: string[] = window.location.href.split('/');
     roleCurrent = roles[roles.length - 2];
-    if (role == roleCurrent || role == "admin") {
+    if (role == "admin") {
       return true;
     }
     this.router.navigate(['/pagenotfound'], { queryParams: { required: state.url + 'admin' } });
