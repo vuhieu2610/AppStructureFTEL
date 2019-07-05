@@ -26,8 +26,8 @@ import { AdminComponent } from './admin/admin.component';
       //   provider: new LinkedInLoginProvider("78iqy5cu2e1fgr")
       // }
     ]);
-    
-    export function provideConfig() {
+
+export function provideConfig() {
       return config;
     }
 @NgModule({
@@ -43,7 +43,6 @@ import { AdminComponent } from './admin/admin.component';
       provide: AuthServiceConfig,
       useFactory: provideConfig
     }
-  
   ]
 })
 export class UserModule { }

@@ -5,7 +5,8 @@ import { MovieComponent } from './movie.component';
 @NgModule({
   declarations: [MovieComponent],
   imports: [
-    CommonModule
+    CommonModule,
+ 
   ]
 })
 export class MovieModule { }

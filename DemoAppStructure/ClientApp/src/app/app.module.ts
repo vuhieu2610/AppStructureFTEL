@@ -12,7 +12,7 @@ import en from '@angular/common/locales/en';
 import { FormComponent } from './Components/form/form.component';
 import { EntityModule } from './Entites/entity.module';
 import {MDBBootstrapModule} from 'angular-bootstrap-md'
-
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -64,6 +64,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
+    CarouselModule,
   
     BrowserAnimationsModule,
     EntityModule,
