@@ -4,12 +4,11 @@ import { UserComponent } from '../user/user.component';
 import { UsersService } from 'src/app/Services/users.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthServiceConfig, 
-  GoogleLoginProvider,
-   FacebookLoginProvider,
-    LinkedInLoginProvider,  
-    SocialLoginModule} from 'angularx-social-login';
-    const config = new AuthServiceConfig([
+import { AuthServiceConfig,
+GoogleLoginProvider,
+FacebookLoginProvider,
+SocialLoginModule} from 'angularx-social-login';
+const config = new AuthServiceConfig([
       {
         id: GoogleLoginProvider.PROVIDER_ID,
         provider: new GoogleLoginProvider('196581055339-prbcgl26v8ffl1nfr5skn6e8juic165s.apps.googleusercontent.com')
@@ -23,8 +22,8 @@ import { AuthServiceConfig,
       //   provider: new LinkedInLoginProvider("78iqy5cu2e1fgr")
       // }
     ]);
-    
-    export function provideConfig() {
+
+export function provideConfig() {
       return config;
     }
 @NgModule({
@@ -40,7 +39,6 @@ import { AuthServiceConfig,
       provide: AuthServiceConfig,
       useFactory: provideConfig
     }
-  
   ]
 })
 export class UserModule { }
