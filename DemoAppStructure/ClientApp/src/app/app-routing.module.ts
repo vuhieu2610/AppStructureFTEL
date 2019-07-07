@@ -12,6 +12,7 @@ import { AuthGuardAdminService } from './Services/auth-guard-admin.service';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { AdminComponent } from './Entites/user/admin/admin.component';
 import { AuthGuardUserService } from './Services/auth-guard-user.service';
+import { MovieDetailsComponent } from './Entites/movie-details/movie-details.component';
 
 const routes: Routes = [
 
@@ -34,8 +35,14 @@ const routes: Routes = [
         path: 'theater', component: TheaterComponent, data: { title: 'theater' }
       },
       {
-        path: 'movie', component: MovieComponent, data: { title: 'movie' }
+        path: 'movie', component: MovieComponent, data: { title: 'movie' },
+        children: [
+          {
+            path: 'details/:id', component: MovieDetailsComponent, data: { title: 'movie-details' }
+          }
+        ]
       }
+     
     ]
   },
   {
@@ -46,45 +53,6 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-
-  // {
-  //   path: '',
-  //   component: LayoutComponent,
-  //   data: {
-  //     title: 'Home'
-  //   },
-  //   children: [
-  //     {
-
-  //       path: 'user',
-  //       component: UserComponent,
-  //       data: {
-  //         title: 'user'
-  //       }
-
-  //     },
-
-  //     {
-  //       path: 'theater',
-  //       component: TheaterComponent,
-  //       data: {
-  //         title: 'theater'
-  //       }
-  //     },
-  //     {
-  //       path: 'movie',
-  //       component: MovieComponent,
-  //       data: {
-  //         title: 'movie'
-  //       }
-  //     },
-  //     // {
-  //     //   path: 'theaterModule',
-  //     //   loadChildren: () => import('./Entites/theater/theater.module').then(m => m.TheaterModule)
-  //     // },
-  //   ]
-
-  // },
   {
     path: 'pagenotfound', component: PageNotFoundComponent
   },
@@ -93,7 +61,6 @@ const routes: Routes = [
     redirectTo: '',
     pathMatch: 'full'
   }
-
 ];
 
 
