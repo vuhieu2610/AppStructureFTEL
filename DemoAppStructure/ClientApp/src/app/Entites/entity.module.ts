@@ -8,7 +8,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
   declarations: [    
-  MovieDetailsComponent],
+  ],
   imports: [
     CommonModule,
     UserModule,

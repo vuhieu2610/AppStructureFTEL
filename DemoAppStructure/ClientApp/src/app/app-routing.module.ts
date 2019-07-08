@@ -58,7 +58,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'pagenotfound',
     pathMatch: 'full'
   }
 ];

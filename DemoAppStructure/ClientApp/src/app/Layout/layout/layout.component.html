@@ -46,10 +46,10 @@
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
         dropdownToggle (click)="false">
         <div *ngIf="user && cus else user123">
-          <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="{{ cus.name }}" />
+          <img src="assets/image/user.png" class="img-avatar" alt="{{ cus.name }}"  weight="30px" height="30px"/>
         </div>
         <ng-template #user123>
-          <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="No account logged" />
+          <img src="assets/image/user.png" class="img-avatar" alt="No account logged" weight="30px" height="30px"/>
         </ng-template>
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">

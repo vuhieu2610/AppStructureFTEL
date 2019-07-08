@@ -19,8 +19,6 @@ export class MovieComponent implements OnInit {
     this.movieService.getMovies()
             .subscribe((movies) => {
                 this.movies = movies;
-                console.log(this.movies[0].Ava_url);
-                console.log(movies);
             },
             (error) => {
               console.log(error.message);
