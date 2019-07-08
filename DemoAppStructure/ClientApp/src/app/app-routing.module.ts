@@ -12,7 +12,7 @@ import { AuthGuardAdminService } from './Services/auth-guard-admin.service';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { AdminComponent } from './Entites/user/admin/admin.component';
 import { AuthGuardUserService } from './Services/auth-guard-user.service';
-import { MovieDetailsComponent } from './Entites/movie-details/movie-details.component';
+import { MovieDetailsComponent } from './Entites/movie/movie-details/movie-details.component';
 
 const routes: Routes = [
 

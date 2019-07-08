@@ -13,7 +13,8 @@
             <label>Thời lượng : {{ movie.length }}</label><br>
             <label>Ngôn ngữ : {{ movie.language }}</label><br>
             <label>Ngày phát hành : {{ movie.released_date.split('T')[0] }}</label><br>
-            <button type="button" class="btn btn-primary">Đặt vé</button>
+            <!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Đặt vé</button> -->
+            <app-booking-modal>Đặt vé</app-booking-modal>
           </div>
         </div>
       </div>
