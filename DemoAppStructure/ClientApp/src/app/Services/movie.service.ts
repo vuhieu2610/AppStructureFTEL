@@ -18,7 +18,7 @@ export class MovieService implements OnInit{
     return this._http.get<Movie[]>(this.staticUrl);
   }
 
-  getSingleMovies(id: number){
+  getSingleMovies(id: number) {
     return this._http.get<Movie>("https://localhost:44311/movie/GetMovieById/" + id);
   }
 }

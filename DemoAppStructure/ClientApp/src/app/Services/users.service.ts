@@ -11,9 +11,9 @@ import { User } from '../Models/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService implements OnInit{
+export class UsersService implements OnInit {
   
-  private staticAPI: string = "https://localhost:44367/api/Users/";
+  private staticAPI: string = 'https://localhost:44367/api/Users/';
   constructor(
     private http: HttpClient
   ) { }
@@ -23,7 +23,7 @@ export class UsersService implements OnInit{
   }
 
   getPaging(condition: BaseCondition) {
-    let url = this.staticAPI + "GetPaging"; 
+    let url = this.staticAPI + 'GetPaging'; 
     return this.http.post<ReturnResult<Users>>(url, condition);
   }
 
