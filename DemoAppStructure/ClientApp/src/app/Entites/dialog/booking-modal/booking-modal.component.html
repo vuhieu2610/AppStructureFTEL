@@ -5,7 +5,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Booking</h4>
-        <button type="button" class="close" (click)="modalRef.hide()" aria-label="Close">
+        <button type="button" class="close" (click)="modalRef.hide(clearSelected())" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -27,19 +27,17 @@
             <div class="screen"></div>
 
             <div *ngFor="let row of rows">
-              <button class="btn btn-primary text-center" *ngFor="let col of cols" (click)="seatClicked(row + col)"
-                [ngSwitch]="getStatus(row + col)" style="width: 40px; height: 30px; margin-left: 5px ">
-
-                <span *ngSwitchCase="'selected'" class="selectedSeat"></span>
-                <span *ngSwitchCase="'reserved'" class="reservedSeat"></span>
-                <span *ngSwitchDefault class="freeSeat"></span>
-                <label style="color: black">{{row + col}}</label>
-
+              <button class="btn" *ngFor="let col of cols" (click)="seatClicked(row + col)"
+                [ngSwitch]="getStatus(row + col)" style="width: 40px; height: 30px; margin-left: 5px; "
+                [ngClass]="{'selectedSeat': getStatus(row + col) == 'selected' ? true : false,
+                'reservedSeat': getStatus(row + col) == 'reserved' ? true : false,
+                'freeSeat': (getStatus(row + col) !== 'reserved' && getStatus(row + col) !== 'selected') ? true : false}" [disabled]="getStatus(row + col) === 'reserved' ? true : false">
+                <label *ngSwitchCase="'selected'" class="selectedSeat">{{row + col}}</label>
+                <label *ngSwitchCase="'reserved'" class="reservedSeat">{{row + col}}</label>
+                <label *ngSwitchDefault>{{row + col}}</label>
+                <!-- <label style="color: black">{{row + col}}</label> -->
               </button>
-
             </div>
-  
-
             <div *ngIf="selected.length > 0" class="font14 marginTB10">
               <label style="color: black" class="wordWrap">SEATS RESERVED : {{selected.length}} <label
                   style="color: black" class="count">{{selected}}</label></label>
@@ -59,7 +57,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Close</button>
+        <button type="button" class="btn btn-secondary" (click)="modalRef.hide(clearSelected())">Close</button>
         <button type="button" class="btn btn-danger">Save</button>
       </div>
     </div><!-- /.modal-content -->

@@ -35,11 +35,11 @@
             "styles": [
             "../ClientApp/node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
             "../ClientApp/node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+
               "../ClientApp/node_modules/@coreui/icons/css/coreui-icons.css",
               "../ClientApp/node_modules/flag-icon-css/css/flag-icon.css",
               "../ClientApp/node_modules/font-awesome/css/font-awesome.css",
               "../ClientApp/node_modules/simple-line-icons/css/simple-line-icons.css",
-              
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.scss"
             ],
