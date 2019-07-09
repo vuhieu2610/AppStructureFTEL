@@ -11,7 +11,7 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": 
-            "sass"
+            "scss"
       }
       },
       "architect": {

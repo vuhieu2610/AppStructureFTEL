@@ -19,6 +19,6 @@ const BOOKING_MODAL= [
     RouterModule,
     DialogModule
   ],
-  providers: [MovieService]
+  providers: [MovieService],
 })
 export class MovieModule { }
