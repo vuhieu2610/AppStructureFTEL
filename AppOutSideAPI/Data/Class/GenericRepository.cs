@@ -11,25 +11,28 @@ namespace AppOutSideAPI.Data.Class
     public class GenericRepository<T> : IGenericRepository<T> where T : new()
     {
         protected DbProvider _db = null;
-        protected StoreProcedureConfigs<T> _storeProcedureConfigs = null;
+        protected StoreProcedureConfigs<T> _storeProcedureConfigs = new StoreProcedureConfigs<T>();
 
         public GenericRepository(DbProvider db)
         {
             _db = db;
-            _storeProcedureConfigs = new StoreProcedureConfigs<T>();
         }
-
+        public GenericRepository(DbProvider db, bool useTransaction)
+        {
+            _db = db;
+            
+            //(Not Available)
+            //_db.UseTransaction();
+        }
         public ReturnResult<T> Delete(T item)
         {
             string outCode = string.Empty;
             string outMsg = string.Empty;
-            int result = 0;
-
             _db.SetQuery(_storeProcedureConfigs.DELETE_SINGLE_STORE_PROCEDURE, CommandType.StoredProcedure)
                 .SetParameter("IN_JSON", SqlDbType.NVarChar, JsonConvert.SerializeObject(item), 4000, ParameterDirection.Input)
                 .SetParameter("OUT_CODE", SqlDbType.NVarChar, DBNull.Value, 40000, ParameterDirection.Output)
                 .SetParameter("OUT_MSG", SqlDbType.NVarChar, DBNull.Value, 40000, ParameterDirection.Output)
-                .ExecuteNoneQuery(out result);
+                .ExecuteNoneQuery(out int result);
 
             _db.GetOutValue("OUT_CODE", out outCode)
                .GetOutValue("OUT_MSG", out outMsg);
@@ -182,6 +185,12 @@ namespace AppOutSideAPI.Data.Class
                 Code = outCode,
                 Message = outMsg
             };
+        }
+
+        public void Dispose()
+        {
+            _db.Dispose();
+            _db = null;
         }
     }
 

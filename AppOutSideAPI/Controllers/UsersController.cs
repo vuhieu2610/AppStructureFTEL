@@ -2,15 +2,16 @@
 using EntityData;
 using EntityData.Common;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace AppOutSideAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : ControllerBase, IDisposable
     {
+        #region initial
         private UserBusiness _bus = null;
-
         private UserBusiness Business
         {
             get
@@ -22,7 +23,14 @@ namespace AppOutSideAPI.Controllers
                 return _bus;
             }
         }
+        public void Dispose()
+        {
+            Business.Dispose();
+        }
+        #endregion
 
+
+        #region http
         [HttpPost]
         public ActionResult<ReturnResult<Users>> GetPaging(BaseCondition condition)
         {
@@ -51,6 +59,9 @@ namespace AppOutSideAPI.Controllers
         {
             return Business.Delete(item);
         }
+        #endregion
+
+        
 
     }
 }

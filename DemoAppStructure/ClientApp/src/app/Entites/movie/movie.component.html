@@ -1,0 +1,24 @@
+<div *ngIf="outlet.isActivated == false">
+<div class="animated fadeIn">
+    <!--/.col-->
+    <div *ngIf="movies" class="row">
+      <div *ngFor="let movie of movies" class="col-sm-6 col-md-3">
+        <div class="card card-accent-primary">
+          <div class="card-body">
+           <a [routerLink]="['/movie/details', movie.id]"> <img width="100%" height="100%" src="{{ movie.ava_url }}" class="align-center" ></a>
+          </div>
+          <div class="card-footer">
+            <label style="color:red; font-style: italic;">Tên phim : {{ movie.name }}</label><br>
+            <label>Thể loại : {{ movie.genre }}</label><br>
+            <label>Thời lượng : {{ movie.length }}</label><br>
+            <label>Ngôn ngữ : {{ movie.language }}</label><br>
+            <label>Ngày phát hành : {{ movie.released_date.split('T')[0] }}</label><br>
+            <!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Đặt vé</button> -->
+            <app-booking-modal>Đặt vé</app-booking-modal>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+<router-outlet #outlet="outlet"></router-outlet>

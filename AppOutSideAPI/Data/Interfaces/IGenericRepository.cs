@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppOutSideAPI.Data.Interfaces
 {
-    public interface IGenericRepository<T> where T : new()
+    public interface IGenericRepository<T>: IDisposable where T : new()
     {
         ReturnResult<T> GetSingle(T item);
 
@@ -22,6 +22,5 @@ namespace AppOutSideAPI.Data.Interfaces
         ReturnResult<T> Update(List<T> items);
 
         ReturnResult<T> Delete(T item);
-
     }
 }
