@@ -9,11 +9,11 @@
       </li>
     </div>
     <ng-template #orther>
-        <li class="nav-item px-3">
-          <a class="nav-link" [routerLink]="['', role, 'create']">Users</a>
-        </li>
-      </ng-template>
-      <!-- <li class="nav-item px-3">
+      <li class="nav-item px-3">
+        <a class="nav-link" [routerLink]="['', role, 'create']">Users</a>
+      </li>
+    </ng-template>
+    <!-- <li class="nav-item px-3">
           <a class="nav-link" [routerLink]="['/user', 'edit']" [queryParams]="{role: role}">UserTest</a>
         </li>
         <li class="nav-item px-3">
@@ -46,10 +46,10 @@
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
         dropdownToggle (click)="false">
         <div *ngIf="user && cus else user123">
-          <img src="assets/image/user.png" class="img-avatar" alt="{{ cus.name }}"  weight="30px" height="30px"/>
+          <img src="assets/image/user.png" class="img-avatar" alt="{{ cus.name }}" weight="30px" height="30px" />
         </div>
         <ng-template #user123>
-          <img src="assets/image/user.png" class="img-avatar" alt="No account logged" weight="30px" height="30px"/>
+          <img src="assets/image/user.png" class="img-avatar" alt="No account logged" weight="30px" height="30px" />
         </ng-template>
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
@@ -106,19 +106,20 @@
     <!--</div>-->
     <!--</li>-->
     <!--</ol>-->
-    <div class="container-fluid">
-      <div class="card-body">
-        <carousel [interval]="myInterval" [noWrap]="noWrapSlides" [(activeSlide)]="activeSlideIndex">
-          <slide  *ngFor="let slide of slides; let index=index">
-            <img [src]="slide.item" alt="image slide" style="display: block; width: 100%;" >
-          </slide>
-        </carousel>
-        <br />
+    <div *ngIf="!outlet.isActivated">
+      <div class="container-fluid">
+        <div class="card-body">
+          <carousel [interval]="myInterval" [noWrap]="noWrapSlides" [(activeSlide)]="activeSlideIndex">
+            <slide *ngFor="let slide of slides; let index=index">
+              <img [src]="slide.item" alt="image slide" style="display: block; width: 100%;">
+            </slide>
+          </carousel>
+          <br />
+        </div>
       </div>
-      <div>
-        <router-outlet></router-outlet>
-      </div><!-- /.container-fluid -->
     </div>
+    <!-- hiển thị child route khi nó được activate -->
+      <router-outlet #outlet="outlet"></router-outlet>
 
   </main>
   <app-aside [fixed]="true" [display]="false">

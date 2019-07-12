@@ -1,7 +1,6 @@
 <button type="button" class="btn btn-primary" (click)="openModal(template)">Đặt vé</button>
 <ng-template #template>
   <div class="modal-danger" style="width: 600px; height:500px">
-
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Booking</h4>
@@ -23,17 +22,17 @@
               <label class="selectedSeat padding-left"></label> SELECTED
             </div>
 
-            <h1 class="font14 marginTop5">SCREEN THIS WAY</h1>>
+            <h1 class="font14 marginTop5">SCREEN THIS WAY</h1>
             <div class="screen"></div>
 
             <div *ngFor="let row of rows">
               <button class="btn" *ngFor="let col of cols" (click)="seatClicked(row + col)"
-                [ngSwitch]="getStatus(row + col)" style="width: 40px; height: 30px; margin-left: 5px; "
-                [ngClass]="{'selectedSeat': getStatus(row + col) == 'selected' ? true : false,
-                'reservedSeat': getStatus(row + col) == 'reserved' ? true : false,
-                'freeSeat': (getStatus(row + col) !== 'reserved' && getStatus(row + col) !== 'selected') ? true : false}" [disabled]="getStatus(row + col) === 'reserved' ? true : false">
-                <label *ngSwitchCase="'selected'" class="selectedSeat">{{row + col}}</label>
-                <label *ngSwitchCase="'reserved'" class="reservedSeat">{{row + col}}</label>
+                [ngSwitch]="getStatus(row + col)" style="width: 40px; height: 30px; margin-left: 5px; " [ngClass]="{'selectedSeat': getStatus(row + col) === 'selected' ? true : false,
+                'reservedSeat': getStatus(row + col) === 'reserved' ? true : false,
+                'freeSeat': (!getStatus(row + col)) ? true : false}"
+                [disabled]="getStatus(row + col) === 'reserved' ? true : false">
+                <label *ngSwitchCase="'selected'" class="selectedSeat">{{ row + col }}</label>
+                <label *ngSwitchCase="'reserved'" class="reservedSeat">{{ row + col }}</label>
                 <label *ngSwitchDefault>{{row + col}}</label>
                 <!-- <label style="color: black">{{row + col}}</label> -->
               </button>

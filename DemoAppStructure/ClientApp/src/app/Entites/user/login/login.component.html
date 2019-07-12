@@ -10,36 +10,45 @@
                   <h1>Login</h1>
                   <p class="text-muted">Sign In to your account</p>
                   <div class="form-group">
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                       <span class="input-group-text"><i class="icon-user"></i></span>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" class="form-control" [(ngModel)]="username" name="username"
+                        placeholder="Username"
+                        autocomplete="username"
+                        (keyup)="textChange($event)"
+                        required>
                     </div>
-                    <input type="text" class="form-control" [(ngModel)]="username" name="username"  placeholder="Username" autocomplete="username" required>
-                  </div>
                   </div>
                   <div class="form-group">
-                  <div class="input-group mb-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-lock"></i></span><br>
+                    <div class="input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-lock"></i></span><br>
+                      </div>
+                      <input type="password" class="form-control" [(ngModel)]="password" name="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        (keyup)="textChange($event)"
+                        required>
                     </div>
-                    <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Password" autocomplete="current-password" required>
-                    
                   </div>
-                </div>
-                <div *ngIf="error">
-                  <h6 class="label label-danger" style="color:red; font-style:italic; ">Sai tên đăng nhập hoặc mật khẩu</h6>
-              </div>
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-6">
+                
+                  <ng-container *ngIf="error else orther">
+                    <h6 class="label label-danger" style="color:red; font-style:italic; ">{{alertFailed}}</h6>
+                  </ng-container>
+                  <ng-template #orther>{{alertFailed}}</ng-template>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-6">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                      <button class="btn btn-primary px-4" type="submit">Login</button>
-                    </div>
-                    <div class="col-6 text-right">
-                      <button type="button" class="btn btn-link px-0" >Forgot password?</button>
+                        <button class="btn btn-primary px-4" type="submit">Login</button>
+                      </div>
+                      <div class="col-6 text-right">
+                        <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                      </div>
                     </div>
                   </div>
-                </div>
                 </form>
               </div>
             </div>
@@ -47,8 +56,9 @@
               <div class="card-body text-center">
                 <div>
                   <h2>Sign up</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <button type="button" class="btn btn-primary active mt-3"(click)="register()" >Register Now!</button>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua.</p>
+                  <button type="button" class="btn btn-primary active mt-3" (click)="register()">Register Now!</button>
                 </div>
               </div>
             </div>
@@ -68,9 +78,12 @@
       <p class="card-text">Sign in with</p>
     </div>
     <div class="card-block">
-      <button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
-      <button class="btn btn-social-icon btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
-      <button class="btn btn-social-icon btn-linkedin" (click)="signInWithLinkedIn()"><span class="fa fa-linkedin"></span></button>
+      <button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()"><span
+          class="fa fa-google"></span></button>
+      <button class="btn btn-social-icon btn-facebook" (click)="signInWithFB()"><span
+          class="fa fa-facebook"></span></button>
+      <button class="btn btn-social-icon btn-linkedin" (click)="signInWithLinkedIn()"><span
+          class="fa fa-linkedin"></span></button>
     </div>
   </div>
   <div *ngIf="user" class="card text-center">
