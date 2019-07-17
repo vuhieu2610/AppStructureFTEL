@@ -10,6 +10,7 @@ namespace AppOutSideAPI
 {
     public class Startup
     {
+        private string POLICY_NAME = "AllowAll";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -22,7 +23,7 @@ namespace AppOutSideAPI
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll",
+                options.AddPolicy(POLICY_NAME,
                     builder =>
                     {
                         builder
@@ -46,7 +47,7 @@ namespace AppOutSideAPI
             {
                 app.UseHsts();
             }
-            app.UseCors("AllowAll");
+            app.UseCors(POLICY_NAME);
             app.UseHttpsRedirection();
             app.UseMvc();
         }

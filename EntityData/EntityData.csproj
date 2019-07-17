@@ -110,7 +110,9 @@
     <Compile Include="Common\BaseCondition.cs" />
     <Compile Include="Common\DbProvider.cs" />
     <Compile Include="Common\ReturnResult.cs" />
-    <Compile Include="Users.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

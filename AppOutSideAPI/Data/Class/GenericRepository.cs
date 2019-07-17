@@ -24,6 +24,8 @@ namespace AppOutSideAPI.Data.Class
             //(Not Available)
             //_db.UseTransaction();
         }
+
+
         public ReturnResult<T> Delete(T item)
         {
             string outCode = string.Empty;
@@ -70,11 +72,34 @@ namespace AppOutSideAPI.Data.Class
             };
         }
 
+        public ReturnResult<T> GetList(List<T> items)
+        {
+            string outCode = String.Empty;
+            string outMsg = String.Empty;
+            List<T> ListData = new List<T>();
+            _db.SetQuery(_storeProcedureConfigs.GET_ALL_STORE_PROCEDURE, CommandType.StoredProcedure)
+                .SetParameter("IN_JSON", SqlDbType.NVarChar, JsonConvert.SerializeObject(items), 4000, ParameterDirection.Input)
+                .SetParameter("ERROR_CODE", SqlDbType.NVarChar, DBNull.Value, 0, ParameterDirection.Input)
+                .SetParameter("ERROR_MESSAGE", SqlDbType.NVarChar,  DBNull.Value, 0, ParameterDirection.Input)
+                .GetList<T>(out ListData)
+                .Complete();
+
+            _db.GetOutValue("OUT_CODE", out outCode)
+                .GetOutValue("OUT_MESSAGE", out outMsg);
+
+            return new ReturnResult<T>()
+            {
+                ListItem = ListData,
+                Code = outCode,
+                Message = outMsg
+            };
+        }
+
         public ReturnResult<T> GetPaging(BaseCondition condition)
         {
             string outCode = string.Empty;
             string outMsg = string.Empty;
-            int outTotalCount = 0;
+            int outTotalRow = 0;
 
             List<T> ListData = new List<T>();
             _db.SetQuery(_storeProcedureConfigs.GET_PAGING_STORE_PROCEDURE, CommandType.StoredProcedure)
@@ -85,7 +110,7 @@ namespace AppOutSideAPI.Data.Class
                .GetList(out ListData)
                .Complete();
 
-            _db.GetOutValue("OUT_TOTAL_COUNT", out outTotalCount)
+            _db.GetOutValue("OUT_TOTAL_COUNT", out outTotalRow)
                .GetOutValue("OUT_CODE", out outCode)
                .GetOutValue("OUT_MSG", out outMsg);
 
@@ -94,7 +119,7 @@ namespace AppOutSideAPI.Data.Class
                 ListItem = ListData,
                 Code = outCode,
                 Message = outMsg,
-                TotalCount = outTotalCount
+                TotalRow = outTotalRow
             };
 
         }
@@ -165,14 +190,14 @@ namespace AppOutSideAPI.Data.Class
             };
         }
 
-        public ReturnResult<T> Update(List<T> items)
+        public ReturnResult<T> Update(List<T> itemList)
         {
             string outCode = string.Empty;
             string outMsg = string.Empty;
             int result = 0;
 
             _db.SetQuery(_storeProcedureConfigs.UPDATE_LIST_STORE_PROCEDURE, CommandType.StoredProcedure)
-                .SetParameter("IN_JSON", SqlDbType.NVarChar, JsonConvert.SerializeObject(items), 4000, ParameterDirection.Input)
+                .SetParameter("IN_JSON", SqlDbType.NVarChar, JsonConvert.SerializeObject(itemList), 4000, ParameterDirection.Input)
                 .SetParameter("OUT_CODE", SqlDbType.NVarChar, DBNull.Value, 40000, ParameterDirection.Output)
                 .SetParameter("OUT_MSG", SqlDbType.NVarChar, DBNull.Value, 40000, ParameterDirection.Output)
                 .ExecuteNoneQuery(out result);

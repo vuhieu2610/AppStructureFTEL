@@ -92,7 +92,7 @@ namespace EntityData.Common
             }
         }
 
-        public int TotalCount { set; get; }
+        public int TotalRow { set; get; }
 
         public void AddMessage(string message)
         {

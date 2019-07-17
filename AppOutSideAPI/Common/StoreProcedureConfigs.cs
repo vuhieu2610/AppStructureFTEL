@@ -109,6 +109,14 @@ namespace AppOutSideAPI.Common
             }
         }
 
+        private string _get_paging_store_procedure_Movie
+        {
+            get
+            {
+                return "[dbo].[MOVIE_GET_PAGING_ADMIN]";
+            }
+        }
+
         #endregion
 
         #region GetSingle
@@ -121,6 +129,14 @@ namespace AppOutSideAPI.Common
             }
         }
 
+        private string _get_single_store_procedure_Movie
+        {
+            get
+            {
+                return "[dbo].[MOVIE_GET_SINGLE]";
+            }
+        }
+
         #endregion
 
         #region InsertList
@@ -129,6 +145,14 @@ namespace AppOutSideAPI.Common
             get
             {
                 return "[dbo].[USER_INSERT]";
+            }
+        }
+
+        private string _insert_list_store_procedure_Movie
+        {
+            get
+            {
+                return "[dbo].[MOVIE_INSERT]";
             }
         }
         #endregion
@@ -151,6 +175,14 @@ namespace AppOutSideAPI.Common
                 return "[dbo].[USER_UPDATE]";
             }
         }
+
+        private string _update_list_store_procedure_Movie
+        {
+            get
+            {
+                return "[dbo].[MOVIE_UPDATE]";
+            }
+        }
         #endregion
 
         #region UpdateSingle
@@ -161,6 +193,14 @@ namespace AppOutSideAPI.Common
                 return "[dbo].[USER_UPDATE]";
             }
         }
+
+        private string _update_single_store_procedure_Movie
+        {
+            get
+            {
+                return "[dbo].[MOVIE_UPDATE]";
+            }
+        }
         #endregion
 
         #region DeleteSingle
@@ -169,6 +209,14 @@ namespace AppOutSideAPI.Common
             get
             {
                 return "[dbo].[USER_DELETE_SINGLE]";
+            }
+        }
+
+        private string _delete_single_store_procedure_Movie
+        {
+            get
+            {
+                return "[dbo].[MOVIE_DELETE]";
             }
         }
         #endregion

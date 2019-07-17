@@ -239,14 +239,27 @@ namespace EntityData.Common
                     var obj = new T();
 
                     foreach (var prop in obj.GetType().GetProperties())
-                    {
-                        prop.SetValue(obj, _db.Reader[prop.Name]);
+                    {                        
+                        var value = GetCurrentReaderValue(_db.Reader[prop.Name]);
+                        prop.SetValue(obj, value);
                     }
                     list.Add(obj);
                 }
             }
 
             return this;
+        }
+
+        private object GetCurrentReaderValue(object sqlDataReader)
+        {
+            if (sqlDataReader.GetType() == typeof(System.DBNull))
+            {
+                return null;
+            }
+            else
+            {
+                return sqlDataReader;
+            }
         }
 
         public DbProvider GetSingle<T>(out T obj) where T : new()
@@ -259,7 +272,8 @@ namespace EntityData.Common
                 {
                     foreach (var prop in obj.GetType().GetProperties())
                     {
-                        prop.SetValue(obj, _db.Reader[prop.Name]);
+                        var value = GetCurrentReaderValue(_db.Reader[prop.Name]);
+                        prop.SetValue(obj, value);
                     }
                     break;
                 }

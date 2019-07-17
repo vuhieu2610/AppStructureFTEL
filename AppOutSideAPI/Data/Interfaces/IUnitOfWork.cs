@@ -1,4 +1,5 @@
-﻿using EntityData;
+﻿using AppOutSideAPI.Data.Class;
+using EntityData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace AppOutSideAPI.Data.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<Users> UserRepository { get; }
+        MovieRepository MovieRepository { get; }
     }
 }

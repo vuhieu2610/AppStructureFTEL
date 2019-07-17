@@ -2,36 +2,53 @@
 using AppOutSideAPI.Data.Interfaces;
 using EntityData;
 using EntityData.Common;
+using EntityData.Models;
 using System;
 
 namespace AppOutSideAPI.Data.Class
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbProvider _db = new DbProvider();
+        private readonly DbProvider _db = null;
+        private MovieRepository _movieRepository = null;
+        private GenericRepository<City> _cityRepository = null;
+
+        public MovieRepository MovieRepository
+        {
+            get
+            {
+                if (_movieRepository == null && _db != null)
+                {
+                    _movieRepository = new MovieRepository(_db);    
+                }
+                return _movieRepository;
+            }
+        }
+
+        public GenericRepository<City> CityRepository
+        {
+            get
+            {
+                if(_cityRepository == null && _db != null)
+                {
+                    _cityRepository = new GenericRepository<City>(_db);
+                }
+                return _cityRepository;
+            }
+        }
 
         public UnitOfWork()
         {
-            // ==== Dependency Injection ==== //
-            //      ( Tạm thời disable )      //
-            //UserRepository = ObjectFactory.Container.With("db").EqualTo(_db).GetInstance<IGenericRepository<Users>>();
-            // ============================== //
-
-            UserRepository = new GenericRepository<Users>(_db);
+            _db = new DbProvider();
+            if (_db == null)
+            {
+                throw new ArgumentException("DbProvider is null");
+            }
         }
-
-        public UnitOfWork(bool useTransaction)
-        {
-            //UserRepository = ObjectFactory.Container.With("db").EqualTo(_db).With("useTransaction").EqualTo(useTransaction).GetInstance<IGenericRepository<Users>>();
-
-            UserRepository = new GenericRepository<Users>(_db, true);
-        }
-
-        public IGenericRepository<Users> UserRepository { get; } = null;
 
         public void Dispose()
         {
-            UserRepository.Dispose();
+            MovieRepository.Dispose();
             _db.Dispose();
         }
     }
