@@ -12,7 +12,7 @@ export class BookingModalComponent implements OnInit {
     movieTitle: string = "Captain America: The Winter Soldier";
     screen: string = "LUXE CINEMAS";
     time: string = "FRI, 6:45PM"
-
+    selecte?: boolean;
     rows: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
     cols: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -22,7 +22,7 @@ export class BookingModalComponent implements OnInit {
     ticketPrice: number = 120;
     convFee: number = 30;
     totalPrice: number = 0;
-    currency: string = "Rs";
+    currency: string = "VNĐ";
     bookingSeat: boolean = false;
 
     constructor(private modalService: BsModalService) { }
@@ -34,16 +34,16 @@ export class BookingModalComponent implements OnInit {
     }
     getStatus(seatPos: string) {
         if (this.reserved.indexOf(seatPos) !== -1) {
-          //  return this.bookingSeat = false;
+            //  return this.bookingSeat = false;
             return 'reserved';
         } else if (this.selected.indexOf(seatPos) !== -1) {
-         //  return this.bookingSeat = true;
+            //  return this.bookingSeat = true;
             return 'selected';
         }
         //  return 'reserved';
     }
     //clear handler
-    clearSelected () {
+    clearSelected() {
         this.selected = [];
     }
     //click handler
@@ -53,14 +53,22 @@ export class BookingModalComponent implements OnInit {
         if (index !== -1) {
             // seat already selected, remove
             this.selected.splice(index, 1);
-         //   this.bookingSeat = false;
+            //   this.bookingSeat = false;
             //    return false;
         } else {
             //push to selected array only if it is not reserved
             if (this.reserved.indexOf(seatPos) === -1) {
+                // đưa ghế đã chọn vào mảng selected và set status selected
                 this.selected.push(seatPos);
                 console.log(this.selected);
-                //       return true;
+                // lấy ra các phần tử từ phần từ thứ 1, không lấy phần tử cuối
+                //   console.log(this.selected.slice(1, 3));
+                // return true;
+                console.table(this.selected.filter(function(arr){
+                    
+                }))
+                // sử dụng map() để thay đổi hoặc thêm mới phần từ vào mảng
+              
             }
         }
     }

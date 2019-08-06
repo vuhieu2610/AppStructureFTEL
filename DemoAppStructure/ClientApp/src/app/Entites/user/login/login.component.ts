@@ -20,15 +20,17 @@ export class LoginComponent implements OnInit {
   submitted = false;
   error: string;
   cus: string;
+  alertFailed: string;
 
   constructor(
     private router: Router,
     private authService: AuthService,
- //   private formBuilder: FormBuilder,
+    //   private formBuilder: FormBuilder,
     private userService: UsersService
   ) {
     this.username = '';
     this.password = '';
+    this.alertFailed = '';
   }
 
   ngOnInit() {
@@ -44,6 +46,11 @@ export class LoginComponent implements OnInit {
     // console.log(this.username, this.password);
     // this.userService.getValue()
     //   .subscribe((response) => console.log(response));
+  }
+  clear() {
+    this.username = '';
+    this.password = '';
+    // setInterval(() => {this.alertFailed = ''}, 3000);
   }
 
   signInWithGoogle(): void {
@@ -74,16 +81,22 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('role', response['body']['roles']);
           localStorage.setItem('token', response['body']['accessToken']);
           localStorage.setItem('user', this.username);
-     //     console.log(response);
-    //     console.log(response['body']['accessToken']);
-          this.router.navigate(['/'], { queryParams: { role: response['body']['roles']} });
+          this.router.navigate(['/'], { queryParams: { role: response['body']['roles'] } });
         }, (error) => {
           console.log(error.message);
-          //   localStorage.setItem('error', error.message);
           this.error = error.message;
-        });
+          this.alertFailed = 'Sai tên đăng nhập hoặc mật khẩu';
+          //  this.clear();
+        }, () => { this.error = null; });
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  textChange(event) {
+    if (this.error) {
+      console.log(this.error);
+      this.alertFailed = '';
     }
   }
 }
