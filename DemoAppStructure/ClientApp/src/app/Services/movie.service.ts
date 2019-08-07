@@ -7,11 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MovieService implements OnInit{
-  private staticUrl = "https://localhost:44311/movie/GetMovieList";
+  private staticUrl = "http://localhost:44311/movie/GetListByStatus/showing";
   constructor(private _http: HttpClient) { }
 
   ngOnInit(): void {
-    
   }
 
   getMovies() : Observable<Movie[]>{
